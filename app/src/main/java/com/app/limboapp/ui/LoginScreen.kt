@@ -21,6 +21,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -137,6 +139,69 @@ fun LoginTextFields() {
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent
             )
+        )
+        
+        Spacer(modifier = Modifier.height(10.dp))
+
+        var password by rememberSaveable { mutableStateOf("") }
+        var passwordVisibility by remember { mutableStateOf(false) }
+        val passwordIcon = if (passwordVisibility) {
+            painterResource(R.drawable.gradient_password_invisible)
+        } else painterResource(R.drawable.gradient_password_visible)
+
+        TextField(
+            modifier = Modifier
+                .clip(RoundedCornerShape(20.dp))
+                .width(300.dp),
+            value = password,
+            onValueChange = {
+                password = it
+            },
+            shape = RoundedCornerShape(20.dp),
+            placeholder = {
+                Text(
+                    text = "Hasło",
+                    color = TextWhite,
+                    fontFamily = Montserrat,
+                    fontWeight = FontWeight.Light,
+                    fontSize = 15.sp
+                )
+            },
+            textStyle = TextStyle(
+                color = TextWhite
+            ),
+            trailingIcon = {
+                IconButton(onClick = {
+                    passwordVisibility = !passwordVisibility
+                }) {
+                    Image(
+                        painter = passwordIcon,
+                        contentDescription = "Hasło",
+                        modifier = Modifier.padding(12.dp)
+                    )
+                }
+            },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+                imeAction = ImeAction.Default
+            ),
+            keyboardActions = KeyboardActions(
+                onAny = {
+                    Log.d("LOG_TAG", "Clicked password done")
+                }
+            ),
+            colors = TextFieldDefaults.textFieldColors(
+                textColor = TextWhite,
+                disabledTextColor = TextWhite,
+                backgroundColor = DarkGray,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent
+            ),
+            visualTransformation = if (passwordVisibility) {
+                VisualTransformation.None
+            } else PasswordVisualTransformation()
         )
     }
     
