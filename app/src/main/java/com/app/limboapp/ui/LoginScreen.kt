@@ -37,7 +37,7 @@ fun LoginScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(ButtonBlack)
+            .background(BlackBackground)
     ) {
         Column {
             Spacer(modifier = Modifier.height(20.dp))

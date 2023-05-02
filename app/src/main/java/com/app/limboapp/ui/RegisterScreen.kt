@@ -1,6 +1,7 @@
 package com.app.limboapp.ui
 
 import android.util.Log
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -28,7 +29,7 @@ import androidx.compose.ui.unit.sp
 import com.app.limboapp.R
 import com.app.limboapp.ui.theme.*
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun RegisterScreen() {
     Box(
@@ -115,5 +116,84 @@ fun RegisterTextFields() {
                 disabledIndicatorColor = Color.Transparent
             )
         )
+
+        Spacer(modifier = Modifier.height(10.dp))
+        
+        val name = remember { mutableStateOf("") }
+        LoginOrRegisterTextField(
+            state = name,
+            hint = "Imię",
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Next,
+            onIconClick = {}
+        ) {
+            Log.d("LOG_TAG", "Finished ${name.value}")
+        }
     }
+}
+
+@Composable
+fun LoginOrRegisterTextField(
+    state: MutableState<String>,
+    hint: String = "",
+    @DrawableRes iconId: Int? = null,
+    onIconClick: () -> Unit,
+    keyboardType: KeyboardType,
+    imeAction: ImeAction,
+    onKeyboardDone: () -> Unit
+) {
+    TextField(
+        modifier = Modifier
+            .clip(RoundedCornerShape(20.dp))
+            .width(300.dp),
+        value = state.value,
+        onValueChange = {
+            state.value = it
+        },
+        shape = RoundedCornerShape(20.dp),
+        placeholder = {
+            Text(
+                text = hint,
+                color = TextWhite,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Light,
+                fontSize = 15.sp
+            )
+        },
+        textStyle = TextStyle(
+            color = TextWhite
+        ),
+        trailingIcon = {
+            IconButton(onClick = {
+                onIconClick()
+            }, enabled = iconId != null
+            ) {
+                Image(
+                    painter = painterResource(
+                        id = iconId ?: R.drawable.transparent_icon
+                    ),
+                    contentDescription = hint,
+                    modifier = Modifier.padding(12.dp)
+                )
+            }
+        },
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(
+            keyboardType = keyboardType,
+            imeAction = imeAction
+        ),
+        keyboardActions = KeyboardActions(
+            onAny = {
+                onKeyboardDone()
+            }
+        ),
+        colors = TextFieldDefaults.textFieldColors(
+            textColor = TextWhite,
+            disabledTextColor = TextWhite,
+            backgroundColor = DarkGray,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+            disabledIndicatorColor = Color.Transparent
+        )
+    )
 }
