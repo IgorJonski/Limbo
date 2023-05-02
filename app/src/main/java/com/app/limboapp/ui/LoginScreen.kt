@@ -16,6 +16,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -43,6 +44,7 @@ fun LoginScreen() {
             LimboLogo()
         }
         LoginTextFields()
+        LoginButtonWithRegisterOption()
     }
 }
 
@@ -220,4 +222,56 @@ fun LoginTextFields() {
             )
         }
     }
+}
+
+@Composable
+fun LoginButtonWithRegisterOption() {
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Bottom,
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        GradientButton(
+            text = "Zaloguj się",
+            textColor = TextWhite,
+            gradient = Brush.horizontalGradient(
+                colors = listOf(
+                    DarkOrange,
+                    MediumOrange,
+                    LightOrange
+                )
+            )
+        ) {
+
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .padding(bottom = 40.dp)
+        ) {
+            Text(
+                text = "Nie masz konta? ",
+                color = TextWhite,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Light,
+                fontSize = 15.sp
+            )
+            Text(
+                text = "Zarejestruj się",
+                color = TextLightOrange,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 15.sp,
+                modifier = Modifier
+                    .clickable {  }
+            )
+        }
+    }
+
+
 }
