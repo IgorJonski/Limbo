@@ -118,7 +118,6 @@ fun RegisterTextFields() {
         )
 
         Spacer(modifier = Modifier.height(10.dp))
-        
         val name = remember { mutableStateOf("") }
         LoginOrRegisterTextField(
             state = name,
@@ -128,6 +127,18 @@ fun RegisterTextFields() {
             onIconClick = {}
         ) {
             Log.d("LOG_TAG", "Finished ${name.value}")
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+        val surname = remember { mutableStateOf("") }
+        LoginOrRegisterTextField(
+            state = surname,
+            hint = "Nazwisko",
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Next,
+            onIconClick = {}
+        ) {
+            Log.d("LOG_TAG", "Finished ${surname.value}")
         }
     }
 }
