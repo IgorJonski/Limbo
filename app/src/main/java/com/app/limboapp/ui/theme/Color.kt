@@ -15,6 +15,7 @@ val MediumOrange = Color(0xFFFA5F00)
 val LightOrange = Color(0xFFFCa401)
 val ButtonBlack = Color(0xFF0D0D0D)
 val TextOrange = Color(0xFFEC5500)
+val TextLightOrange = Color(0xFFFB6801)
 val DarkGray = Color(0xFF252525)
 
 val horizontalOrangeGradient = Brush.horizontalGradient(

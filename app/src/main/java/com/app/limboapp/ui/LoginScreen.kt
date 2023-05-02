@@ -3,6 +3,7 @@ package com.app.limboapp.ui
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -40,8 +41,8 @@ fun LoginScreen() {
         Column {
             Spacer(modifier = Modifier.height(20.dp))
             LimboLogo()
-            LoginTextFields()
         }
+        LoginTextFields()
     }
 }
 
@@ -149,60 +150,74 @@ fun LoginTextFields() {
             painterResource(R.drawable.gradient_password_invisible)
         } else painterResource(R.drawable.gradient_password_visible)
 
-        TextField(
-            modifier = Modifier
-                .clip(RoundedCornerShape(20.dp))
-                .width(300.dp),
-            value = password,
-            onValueChange = {
-                password = it
-            },
-            shape = RoundedCornerShape(20.dp),
-            placeholder = {
-                Text(
-                    text = "Hasło",
-                    color = TextWhite,
-                    fontFamily = Montserrat,
-                    fontWeight = FontWeight.Light,
-                    fontSize = 15.sp
-                )
-            },
-            textStyle = TextStyle(
-                color = TextWhite
-            ),
-            trailingIcon = {
-                IconButton(onClick = {
-                    passwordVisibility = !passwordVisibility
-                }) {
-                    Image(
-                        painter = passwordIcon,
-                        contentDescription = "Hasło",
-                        modifier = Modifier.padding(12.dp)
+        Column() {
+            TextField(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(20.dp))
+                    .width(300.dp),
+                value = password,
+                onValueChange = {
+                    password = it
+                },
+                shape = RoundedCornerShape(20.dp),
+                placeholder = {
+                    Text(
+                        text = "Hasło",
+                        color = TextWhite,
+                        fontFamily = Montserrat,
+                        fontWeight = FontWeight.Light,
+                        fontSize = 15.sp
                     )
-                }
-            },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password,
-                imeAction = ImeAction.Default
-            ),
-            keyboardActions = KeyboardActions(
-                onAny = {
-                    Log.d("LOG_TAG", "Clicked password done")
-                }
-            ),
-            colors = TextFieldDefaults.textFieldColors(
-                textColor = TextWhite,
-                disabledTextColor = TextWhite,
-                backgroundColor = DarkGray,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
-            ),
-            visualTransformation = if (passwordVisibility) {
-                VisualTransformation.None
-            } else PasswordVisualTransformation()
-        )
+                },
+                textStyle = TextStyle(
+                    color = TextWhite
+                ),
+                trailingIcon = {
+                    IconButton(onClick = {
+                        passwordVisibility = !passwordVisibility
+                    }) {
+                        Image(
+                            painter = passwordIcon,
+                            contentDescription = "Hasło",
+                            modifier = Modifier.padding(12.dp)
+                        )
+                    }
+                },
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Default
+                ),
+                keyboardActions = KeyboardActions(
+                    onAny = {
+                        Log.d("LOG_TAG", "Clicked password done")
+                    }
+                ),
+                colors = TextFieldDefaults.textFieldColors(
+                    textColor = TextWhite,
+                    disabledTextColor = TextWhite,
+                    backgroundColor = DarkGray,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
+                ),
+                visualTransformation = if (passwordVisibility) {
+                    VisualTransformation.None
+                } else PasswordVisualTransformation()
+            )
+            
+            Spacer(modifier = Modifier.height(6.dp))
+
+            Text(
+                text = "Zapomniałeś hasła?",
+                color = TextLightOrange,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Light,
+                fontSize = 12.sp,
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .clickable { Log.d("LOG_TAG", "Forgot password clicked") }
+            )
+        }
     }
-    
 }
