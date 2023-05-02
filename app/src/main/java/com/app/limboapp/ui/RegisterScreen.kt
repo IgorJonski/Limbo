@@ -23,6 +23,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -140,6 +142,25 @@ fun RegisterTextFields() {
         ) {
             Log.d("LOG_TAG", "Finished ${surname.value}")
         }
+
+        Spacer(modifier = Modifier.height(10.dp))
+        val password = remember { mutableStateOf("") }
+        var passwordVisibility by remember { mutableStateOf(false) }
+        LoginOrRegisterTextField(
+            state = password,
+            hint = "Hasło",
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Next,
+            iconId = if (passwordVisibility) {
+                R.drawable.gradient_password_invisible
+            } else R.drawable.gradient_password_visible,
+            onIconClick = { passwordVisibility = !passwordVisibility },
+            visualTransformation = if (passwordVisibility) {
+                VisualTransformation.None
+            } else PasswordVisualTransformation()
+        ) {
+            Log.d("LOG_TAG", "Finished ${password.value}")
+        }
     }
 }
 
@@ -151,6 +172,7 @@ fun LoginOrRegisterTextField(
     onIconClick: () -> Unit,
     keyboardType: KeyboardType,
     imeAction: ImeAction,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
     onKeyboardDone: () -> Unit
 ) {
     TextField(
@@ -205,6 +227,7 @@ fun LoginOrRegisterTextField(
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
             disabledIndicatorColor = Color.Transparent
-        )
+        ),
+        visualTransformation = visualTransformation
     )
 }
