@@ -161,6 +161,17 @@ fun RegisterTextFields() {
         ) {
             Log.d("LOG_TAG", "Finished ${password.value}")
         }
+
+        Spacer(modifier = Modifier.height(10.dp))
+        val repeatPassword = remember { mutableStateOf("") }
+        LoginOrRegisterTextField(
+            state = repeatPassword,
+            hint = "Powtórz hasło",
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Next
+        ) {
+            Log.d("LOG_TAG", "Finished ${repeatPassword.value}")
+        }
     }
 }
 
@@ -169,7 +180,7 @@ fun LoginOrRegisterTextField(
     state: MutableState<String>,
     hint: String = "",
     @DrawableRes iconId: Int? = null,
-    onIconClick: () -> Unit,
+    onIconClick: () -> Unit = {},
     keyboardType: KeyboardType,
     imeAction: ImeAction,
     visualTransformation: VisualTransformation = VisualTransformation.None,
