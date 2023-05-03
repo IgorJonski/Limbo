@@ -199,6 +199,20 @@ fun RegisterTextFields() {
                     .clickable { isStudent = !isStudent }
             )
         }
+        
+        Spacer(modifier = Modifier.height(10.dp))
+        val studentID = remember { mutableStateOf("") }
+        if (isStudent) {
+            LoginOrRegisterTextField(
+                state = studentID,
+                hint = "Numer albumu",
+                keyboardType = KeyboardType.Text,
+                imeAction = ImeAction.Next,
+                enabled = isStudent
+            ) {
+                Log.d("LOG_TAG", "Finished ${studentID.value}")
+            }
+        }
     }
 }
 
@@ -211,6 +225,7 @@ fun LoginOrRegisterTextField(
     keyboardType: KeyboardType,
     imeAction: ImeAction,
     visualTransformation: VisualTransformation = VisualTransformation.None,
+    enabled: Boolean = true,
     onKeyboardDone: () -> Unit
 ) {
     TextField(
@@ -266,6 +281,7 @@ fun LoginOrRegisterTextField(
             unfocusedIndicatorColor = Color.Transparent,
             disabledIndicatorColor = Color.Transparent
         ),
-        visualTransformation = visualTransformation
+        visualTransformation = visualTransformation,
+        enabled = enabled
     )
 }
