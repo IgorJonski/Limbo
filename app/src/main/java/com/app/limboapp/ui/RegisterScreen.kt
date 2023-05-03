@@ -4,14 +4,12 @@ import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -171,6 +169,35 @@ fun RegisterTextFields() {
             imeAction = ImeAction.Next
         ) {
             Log.d("LOG_TAG", "Finished ${repeatPassword.value}")
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+        var isStudent by remember { mutableStateOf(false) }
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Checkbox(
+                checked = isStudent,
+                onCheckedChange = {
+                    isStudent = it
+                },
+                colors = CheckboxDefaults.colors(
+                    checkedColor = TextLightOrange,
+                    uncheckedColor = Color.Gray
+                )
+            )
+            Text(
+                text = "Jesteś studentem PŁ?",
+                color = TextWhite,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Light,
+                fontSize = 16.sp,
+                modifier = Modifier
+                    .clickable { isStudent = !isStudent }
+            )
         }
     }
 }
