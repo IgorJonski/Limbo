@@ -42,6 +42,13 @@ fun RegisterScreen() {
             LimboLogo()
         }
         RegisterTextFields()
+        LoginRegisterOption(
+            buttonText = "Zarejestruj się",
+            onButtonClick = {},
+            secondOptionFirstText = "Masz już konto? ",
+            secondOptionSecondText = "Zaloguj się",
+            onSecondOptionClick = {}
+        )
     }
 }
 

@@ -44,7 +44,13 @@ fun LoginScreen() {
             LimboLogo()
         }
         LoginTextFields()
-        LoginButtonWithRegisterOption()
+        LoginRegisterOption(
+            buttonText = "Zaloguj się",
+            onButtonClick = {},
+            secondOptionFirstText = "Nie masz konta? ",
+            secondOptionSecondText = "Zarejestruj się",
+            onSecondOptionClick = {}
+        )
     }
 }
 
@@ -225,7 +231,13 @@ fun LoginTextFields() {
 }
 
 @Composable
-fun LoginButtonWithRegisterOption() {
+fun LoginRegisterOption(
+    buttonText: String = "",
+    onButtonClick: () -> Unit = {},
+    secondOptionFirstText: String = "",
+    secondOptionSecondText: String = "",
+    onSecondOptionClick: () -> Unit = {}
+) {
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -234,7 +246,7 @@ fun LoginButtonWithRegisterOption() {
             .fillMaxSize()
     ) {
         GradientButton(
-            text = "Zaloguj się",
+            text = buttonText,
             textColor = TextWhite,
             gradient = Brush.horizontalGradient(
                 colors = listOf(
@@ -244,7 +256,7 @@ fun LoginButtonWithRegisterOption() {
                 )
             )
         ) {
-
+            onButtonClick()
         }
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -255,20 +267,20 @@ fun LoginButtonWithRegisterOption() {
                 .padding(bottom = 40.dp)
         ) {
             Text(
-                text = "Nie masz konta? ",
+                text = secondOptionFirstText,
                 color = TextWhite,
                 fontFamily = Montserrat,
                 fontWeight = FontWeight.Light,
                 fontSize = 15.sp
             )
             Text(
-                text = "Zarejestruj się",
+                text = secondOptionSecondText,
                 color = TextLightOrange,
                 fontFamily = Montserrat,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 15.sp,
                 modifier = Modifier
-                    .clickable {  }
+                    .clickable { onSecondOptionClick() }
             )
         }
     }
