@@ -2,9 +2,7 @@ package com.app.limboapp.ui
 
 import android.util.Log
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -32,34 +30,48 @@ import com.app.limboapp.ui.theme.*
 @Preview(showBackground = true)
 @Composable
 fun RegisterScreen() {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(BlackBackground)
     ) {
-        Column {
-            Spacer(modifier = Modifier.height(20.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
             LimboLogo()
         }
-        RegisterTextFields()
-        LoginRegisterOption(
-            buttonText = "Zarejestruj się",
-            onButtonClick = {},
-            secondOptionFirstText = "Masz już konto? ",
-            secondOptionSecondText = "Zaloguj się",
-            onSecondOptionClick = {}
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .weight(1f)
+        ) {
+            RegisterTextFields()
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            LoginRegisterOption(
+                buttonText = "Zarejestruj się",
+                onButtonClick = {},
+                secondOptionFirstText = "Masz już konto? ",
+                secondOptionSecondText = "Zaloguj się",
+                onSecondOptionClick = {}
+            )
+        }
     }
 }
 
 @Composable
 fun RegisterTextFields() {
     Column(
-        modifier = Modifier
-            .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
+        ) {
         Text(
             text = "Rejestracja",
             color = TextWhite,
@@ -100,7 +112,9 @@ fun RegisterTextFields() {
                     Image(
                         painter = painterResource(id = R.drawable.user_gradient_icon),
                         contentDescription = "Email użytkownika",
-                        modifier = Modifier.padding(12.dp)
+                        modifier = Modifier
+                            .padding(12.dp)
+                            .size(30.dp)
                     )
                 }
             },
@@ -266,7 +280,9 @@ fun LoginOrRegisterTextField(
                         id = iconId ?: R.drawable.transparent_icon
                     ),
                     contentDescription = hint,
-                    modifier = Modifier.padding(12.dp)
+                    modifier = Modifier
+                        .padding(12.dp)
+                        .size(30.dp)
                 )
             }
         },

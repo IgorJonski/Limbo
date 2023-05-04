@@ -61,6 +61,7 @@ fun LimboLogo() {
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
+            .padding(vertical = 16.dp)
     ) {
         Image(
             painter = painterResource(id = R.drawable.limbo_flame),
@@ -238,12 +239,12 @@ fun LoginRegisterOption(
     secondOptionSecondText: String = "",
     onSecondOptionClick: () -> Unit = {}
 ) {
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Bottom,
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth()
+            .padding(top = 32.dp)
     ) {
         GradientButton(
             text = buttonText,
