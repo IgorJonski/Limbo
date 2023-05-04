@@ -43,6 +43,21 @@ fun ProfileScreen() {
             contentDescription = "Profile picture",
             size = 100.dp
         )
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(
+            text = "Igor Joński",
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Medium,
+            fontSize = 18.sp
+        )
+        Text(
+            text = "jonskiigor@gmail.com",
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Light,
+            fontSize = 14.sp
+        )
     }
 }
 
