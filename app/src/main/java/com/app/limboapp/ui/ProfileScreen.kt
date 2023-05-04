@@ -1,5 +1,6 @@
 package com.app.limboapp.ui
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -10,11 +11,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -58,6 +62,7 @@ fun ProfileScreen() {
             fontWeight = FontWeight.Light,
             fontSize = 14.sp
         )
+        ChangePassword()
     }
 }
 
@@ -166,4 +171,58 @@ fun CircleImage(
             .size(size)
             .clip(CircleShape)
     )
+}
+
+@Composable
+fun ChangePassword() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "Zmień hasło",
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Medium,
+            fontSize = 14.sp,
+            modifier = Modifier
+                .padding(top = 20.dp, bottom = 10.dp)
+        )
+        val oldPassword = rememberSaveable { mutableStateOf("") }
+        CustomTextField(
+            state = oldPassword,
+            hint = "Stare hasło",
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Next,
+            enabled = false
+        ) {
+            Log.d("LOG_TAG", "Finished ${oldPassword.value}")
+        }
+        
+        Spacer(modifier = Modifier.height(10.dp))
+        
+        val newPassword = rememberSaveable { mutableStateOf("") }
+        CustomTextField(
+            state = newPassword,
+            hint = "Nowe hasło",
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Next,
+            enabled = false
+        ) {
+            Log.d("LOG_TAG", "Finished ${oldPassword.value}")
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        val repeatNewPassword = rememberSaveable { mutableStateOf("") }
+        CustomTextField(
+            state = repeatNewPassword,
+            hint = "Powtórz nowe hasło",
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Next,
+            enabled = false
+        ) {
+            Log.d("LOG_TAG", "Finished ${oldPassword.value}")
+        }
+    }
 }

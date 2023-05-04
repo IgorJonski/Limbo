@@ -140,7 +140,7 @@ fun RegisterTextFields() {
 
         Spacer(modifier = Modifier.height(10.dp))
         val name = remember { mutableStateOf("") }
-        LoginOrRegisterTextField(
+        CustomTextField(
             state = name,
             hint = "Imię",
             keyboardType = KeyboardType.Text,
@@ -152,7 +152,7 @@ fun RegisterTextFields() {
 
         Spacer(modifier = Modifier.height(10.dp))
         val surname = remember { mutableStateOf("") }
-        LoginOrRegisterTextField(
+        CustomTextField(
             state = surname,
             hint = "Nazwisko",
             keyboardType = KeyboardType.Text,
@@ -165,7 +165,7 @@ fun RegisterTextFields() {
         Spacer(modifier = Modifier.height(10.dp))
         val password = remember { mutableStateOf("") }
         var passwordVisibility by remember { mutableStateOf(false) }
-        LoginOrRegisterTextField(
+        CustomTextField(
             state = password,
             hint = "Hasło",
             keyboardType = KeyboardType.Text,
@@ -183,7 +183,7 @@ fun RegisterTextFields() {
 
         Spacer(modifier = Modifier.height(10.dp))
         val repeatPassword = remember { mutableStateOf("") }
-        LoginOrRegisterTextField(
+        CustomTextField(
             state = repeatPassword,
             hint = "Powtórz hasło",
             keyboardType = KeyboardType.Text,
@@ -224,7 +224,7 @@ fun RegisterTextFields() {
         Spacer(modifier = Modifier.height(10.dp))
         val studentID = remember { mutableStateOf("") }
         if (isStudent) {
-            LoginOrRegisterTextField(
+            CustomTextField(
                 state = studentID,
                 hint = "Numer albumu",
                 keyboardType = KeyboardType.Text,
@@ -238,7 +238,7 @@ fun RegisterTextFields() {
 }
 
 @Composable
-fun LoginOrRegisterTextField(
+fun CustomTextField(
     state: MutableState<String>,
     hint: String = "",
     @DrawableRes iconId: Int? = null,
