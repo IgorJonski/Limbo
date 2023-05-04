@@ -2,6 +2,7 @@ package com.app.limboapp.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
@@ -33,6 +34,7 @@ fun ProfileScreen() {
         ) {
             LimboLogoWithPointsAndLogout()
         }
+
     }
 }
 
@@ -45,8 +47,13 @@ fun LimboLogoWithPointsAndLogout() {
             .fillMaxWidth()
             .padding(vertical = 16.dp)
     ) {
-        Flickers()
-
+        Box(
+            modifier = Modifier
+                .weight(1f),
+            contentAlignment = Alignment.Center
+        ) {
+            Flickers()
+        }
         Row(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
@@ -65,7 +72,13 @@ fun LimboLogoWithPointsAndLogout() {
                 color = TextOrange
             )
         }
-
+        Box(
+            modifier = Modifier
+                .weight(1f),
+            contentAlignment = Alignment.Center
+        ) {
+            LogoutButton()
+        }
     }
 }
 
@@ -94,6 +107,25 @@ fun Flickers() {
             fontSize = 15.sp,
             modifier = Modifier
                 .padding(end = 10.dp, start = 6.dp, top = 8.dp, bottom = 8.dp)
+        )
+    }
+}
+
+@Composable
+fun LogoutButton() {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(10.dp))
+            .background(DarkGray)
+            .padding(8.dp)
+            .clickable { },
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_logout),
+            contentDescription = "Logout",
+            modifier = Modifier
+                .size(20.dp)
         )
     }
 }
