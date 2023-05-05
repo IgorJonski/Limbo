@@ -3,6 +3,7 @@ package com.app.limboapp.ui
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -19,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -63,6 +65,7 @@ fun ProfileScreen() {
             fontSize = 14.sp
         )
         ChangePassword()
+        RedeemFlickers()
     }
 }
 
@@ -118,7 +121,7 @@ fun Flickers() {
         modifier = Modifier
             .clip(RoundedCornerShape(16.dp))
             .background(DarkGray)
-            .clickable {  }
+            .clickable { }
     ) {
         Image(
             painter = painterResource(id = R.drawable.limbo_flame),
@@ -231,6 +234,84 @@ fun ChangePassword() {
             width = 0.5f
         ) {
 
+        }
+    }
+}
+
+@Composable
+fun RedeemFlickers() {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .padding(24.dp)
+            .fillMaxWidth()
+    ) {
+        Text(
+            text = "Wymień płomyki na bonusy",
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Medium,
+            fontSize = 14.sp
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(20.dp))
+                .border(
+                    width = 4.dp,
+                    brush = horizontalOrangeGradient,
+                    shape = RoundedCornerShape(20.dp)
+                )
+                .background(horizontalBlackGradient)
+                .padding(horizontal = 14.dp, vertical = 18.dp)
+                .clickable {  }
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(2f),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = "Płomyki do wymiany",
+                        color = TextWhite,
+                        fontFamily = Montserrat,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 16.sp,
+                        textAlign = TextAlign.Center
+                    )
+                    Text(
+                        text = "49",
+                        color = TextOrange,
+                        fontFamily = Montserrat,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 24.sp
+                    )
+                    Text(
+                        text = "Kliknij, aby przejść do ekranu wymiany płomyków",
+                        color = TextWhite,
+                        fontFamily = Montserrat,
+                        fontWeight = FontWeight.Light,
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
+                Image(
+                    painter = painterResource(id = R.drawable.ic_redeem),
+                    contentDescription = "Wymień płomyki",
+                    modifier = Modifier
+                        .weight(1f)
+                )
+            }
         }
     }
 }

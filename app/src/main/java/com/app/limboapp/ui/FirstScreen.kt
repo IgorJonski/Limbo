@@ -151,7 +151,7 @@ fun GradientButton(
             backgroundColor = Color.Transparent
         ),
         contentPadding = PaddingValues(),
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(25.dp),
         modifier = modifier,
         onClick = { onClick() },
     ) {

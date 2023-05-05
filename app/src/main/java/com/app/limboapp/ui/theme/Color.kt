@@ -20,3 +20,13 @@ val horizontalOrangeGradient = Brush.horizontalGradient(
         LightOrange
     )
 )
+
+val horizontalBlackGradient = Brush.horizontalGradient(
+    colors = listOf(
+        BlackBackground,
+        Color(0xFF121212),
+        Color(0xFF151515),
+        Color(0xFF141414),
+        Color(0xFF111111)
+    )
+)
