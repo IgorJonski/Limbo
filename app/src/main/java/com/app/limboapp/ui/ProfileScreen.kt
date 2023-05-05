@@ -1,10 +1,7 @@
 package com.app.limboapp.ui
 
 import android.util.Log
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -43,29 +40,37 @@ fun ProfileScreen() {
         ) {
             LimboLogoWithPointsAndLogout()
         }
-        Spacer(modifier = Modifier.height(8.dp))
-        CircleImage(
-            imageID = R.drawable.profile_pic,
-            contentDescription = "Profile picture",
-            size = 100.dp
-        )
-        Spacer(modifier = Modifier.height(12.dp))
-        Text(
-            text = "Igor Joński",
-            color = TextWhite,
-            fontFamily = Montserrat,
-            fontWeight = FontWeight.Medium,
-            fontSize = 18.sp
-        )
-        Text(
-            text = "jonskiigor@gmail.com",
-            color = TextWhite,
-            fontFamily = Montserrat,
-            fontWeight = FontWeight.Light,
-            fontSize = 14.sp
-        )
-        ChangePassword()
-        RedeemFlickers()
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+        ) {
+            Spacer(modifier = Modifier.height(8.dp))
+            CircleImage(
+                imageID = R.drawable.profile_pic,
+                contentDescription = "Profile picture",
+                size = 100.dp
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "Igor Joński",
+                color = TextWhite,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Medium,
+                fontSize = 18.sp
+            )
+            Text(
+                text = "jonskiigor@gmail.com",
+                color = TextWhite,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Light,
+                fontSize = 14.sp
+            )
+            ChangePassword()
+            RedeemFlickers()
+        }
+
     }
 }
 
@@ -266,7 +271,7 @@ fun RedeemFlickers() {
                 )
                 .background(horizontalBlackGradient)
                 .padding(horizontal = 14.dp, vertical = 18.dp)
-                .clickable {  }
+                .clickable { }
         ) {
             Row(
                 modifier = Modifier
