@@ -6,24 +6,19 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
-import androidx.compose.material.darkColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -148,6 +143,7 @@ fun GradientButton(
     fontFamily: FontFamily = Montserrat,
     fontWeight: FontWeight = FontWeight.Bold,
     gradient: Brush,
+    width: Float = 0.65f,
     onClick: () -> Unit
 ) {
     Button(
@@ -161,9 +157,9 @@ fun GradientButton(
     ) {
         Box(
             modifier = Modifier
+                .fillMaxWidth(width)
                 .background(gradient)
-                .padding(horizontal = 60.dp, vertical = 18.dp)
-                .width(120.dp),
+                .padding(vertical = 18.dp),
             contentAlignment = Alignment.Center
         ) {
             Text(

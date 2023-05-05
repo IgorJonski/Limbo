@@ -34,23 +34,36 @@ import com.app.limboapp.ui.theme.*
 @Preview
 @Composable
 fun LoginScreen() {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(BlackBackground)
     ) {
-        Column {
-            Spacer(modifier = Modifier.height(20.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
             LimboLogo()
         }
-        LoginTextFields()
-        LoginRegisterOption(
-            buttonText = "Zaloguj się",
-            onButtonClick = {},
-            secondOptionFirstText = "Nie masz konta? ",
-            secondOptionSecondText = "Zarejestruj się",
-            onSecondOptionClick = {}
-        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .weight(1f)
+        ) {
+            LoginTextFields()
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            LoginRegisterOption(
+                buttonText = "Zaloguj się",
+                onButtonClick = {},
+                secondOptionFirstText = "Nie masz konta? ",
+                secondOptionSecondText = "Zarejestruj się",
+                onSecondOptionClick = {}
+            )
+        }
     }
 }
 

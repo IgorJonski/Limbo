@@ -118,6 +118,7 @@ fun Flickers() {
         modifier = Modifier
             .clip(RoundedCornerShape(16.dp))
             .background(DarkGray)
+            .clickable {  }
     ) {
         Image(
             painter = painterResource(id = R.drawable.limbo_flame),
@@ -145,8 +146,8 @@ fun LogoutButton() {
         modifier = Modifier
             .clip(RoundedCornerShape(10.dp))
             .background(DarkGray)
-            .padding(8.dp)
-            .clickable { },
+            .clickable { }
+            .padding(8.dp),
         contentAlignment = Alignment.Center
     ) {
         Image(
@@ -194,7 +195,6 @@ fun ChangePassword() {
             hint = "Stare hasło",
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next,
-            enabled = false
         ) {
             Log.d("LOG_TAG", "Finished ${oldPassword.value}")
         }
@@ -207,7 +207,6 @@ fun ChangePassword() {
             hint = "Nowe hasło",
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next,
-            enabled = false
         ) {
             Log.d("LOG_TAG", "Finished ${oldPassword.value}")
         }
@@ -220,9 +219,18 @@ fun ChangePassword() {
             hint = "Powtórz nowe hasło",
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next,
-            enabled = false
         ) {
             Log.d("LOG_TAG", "Finished ${oldPassword.value}")
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+        GradientButton(
+            text = "Zmień hasło",
+            textColor = TextWhite,
+            gradient = horizontalOrangeGradient,
+            width = 0.5f
+        ) {
+
         }
     }
 }
