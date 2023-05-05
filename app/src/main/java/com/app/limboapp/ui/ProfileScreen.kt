@@ -172,6 +172,7 @@ fun CircleImage(
     imageID: Int,
     contentDescription: String,
     size: Dp,
+    onClick: () -> Unit = {}
 ) {
     Image(
         painter = painterResource(id = imageID),
@@ -179,6 +180,7 @@ fun CircleImage(
         modifier = Modifier
             .size(size)
             .clip(CircleShape)
+            .clickable { onClick() }
     )
 }
 
