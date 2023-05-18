@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
@@ -119,11 +120,25 @@ fun LimboLogoWithPointsAndLogout() {
 }
 
 @Composable
-fun Flickers() {
+fun Flickers(
+    modifier: Modifier = Modifier,
+) {
+    val points by remember { mutableStateOf(50) }
+
+    Flickers(
+        modifier = modifier,
+        flickers = points
+    )
+}
+
+@Composable
+fun Flickers(
+    modifier: Modifier = Modifier,
+    flickers: Int
+) {
     Row(
-        horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .clip(RoundedCornerShape(16.dp))
             .background(DarkGray)
             .clickable { }
@@ -135,15 +150,14 @@ fun Flickers() {
                 .padding(6.dp)
                 .size(20.dp)
         )
-        val points by remember { mutableStateOf(50) }
         Text(
-            text = points.toString(),
+            text = flickers.toString(),
             color = TextWhite,
             fontFamily = Montserrat,
             fontWeight = FontWeight.SemiBold,
             fontSize = 15.sp,
             modifier = Modifier
-                .padding(end = 10.dp, start = 6.dp, top = 8.dp, bottom = 8.dp)
+                .padding(end = 10.dp, top = 8.dp, bottom = 8.dp)
         )
     }
 }
@@ -321,4 +335,10 @@ fun RedeemFlickers() {
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun FlickersPreview() {
+    Flickers(flickers = 50)
 }

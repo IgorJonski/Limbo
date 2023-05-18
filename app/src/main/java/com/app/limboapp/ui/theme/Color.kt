@@ -12,6 +12,7 @@ val ButtonBlack = Color(0xFF0D0D0D)
 val TextOrange = Color(0xFFEC5500)
 val TextLightOrange = Color(0xFFFB6801)
 val DarkGray = Color(0xFF181818)
+val CircleGray = Color(0xFF1E1E1E)
 val LightGreen = Color(0xFF3FB105)
 val DarkGreen = Color(0xFF12350A)
 
@@ -27,6 +28,20 @@ val greenGradient = Brush.horizontalGradient(
     colors = listOf(
         LightGreen,
         DarkGreen
+    )
+)
+
+val circleProgressGreenGradient = Brush.horizontalGradient(
+    colors = listOf(
+        Color(0xFF00F90A),
+        Color(0xFF1F7600)
+    )
+)
+
+val circleProgressOrangeGradient = Brush.horizontalGradient(
+    colors = listOf(
+        Color(0xFFFDBB00),
+        Color(0xFFF90800)
     )
 )
 
