@@ -15,6 +15,7 @@ val DarkGray = Color(0xFF181818)
 val CircleGray = Color(0xFF1E1E1E)
 val LightGreen = Color(0xFF3FB105)
 val DarkGreen = Color(0xFF12350A)
+val MiniFlickersBackground = Color(0xF00D0D0D)
 
 val orangeGradient = Brush.horizontalGradient(
     colors = listOf(
