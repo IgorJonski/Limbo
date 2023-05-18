@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.limboapp.R
+import com.app.limboapp.components.LimboBottomNavigation
 import com.app.limboapp.ui.theme.*
 
 @Preview
@@ -34,6 +35,9 @@ fun ProfileScreen() {
         backgroundColor = BlackBackground,
         topBar = {
             LimboLogoWithPointsAndLogout()
+        },
+        bottomBar = {
+            LimboBottomNavigation()
         }
     ) { paddingValues ->
         Column(
