@@ -39,7 +39,7 @@ fun RegisterScreen() {
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            LimboLogo()
+            LimboLogoToFix()
         }
         Box(
             modifier = Modifier

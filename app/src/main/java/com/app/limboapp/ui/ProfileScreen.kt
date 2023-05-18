@@ -5,8 +5,8 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
@@ -29,100 +29,72 @@ import com.app.limboapp.ui.theme.*
 @Preview
 @Composable
 fun ProfileScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(BlackBackground),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
+
+    Scaffold(
+        backgroundColor = BlackBackground,
+        topBar = {
             LimboLogoWithPointsAndLogout()
         }
+    ) { paddingValues ->
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
+                .padding(paddingValues)
         ) {
             Spacer(modifier = Modifier.height(8.dp))
-            CircleImage(
-                imageID = R.drawable.profile_pic,
-                contentDescription = "Profile picture",
-                size = 100.dp
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            Text(
-                text = "Igor Joński",
-                color = TextWhite,
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Medium,
-                fontSize = 18.sp
-            )
-            Text(
-                text = "jonskiigor@gmail.com",
-                color = TextWhite,
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Light,
-                fontSize = 14.sp
-            )
-            ChangePassword()
-            RedeemFlickers()
+            ProfileInfo()
+            ChangePassword(Modifier.padding(top = 16.dp))
+            RedeemFlickersSection(Modifier.padding(top = 30.dp, bottom = 16.dp))
         }
-
     }
 }
 
 @Composable
 fun LimboLogoWithPointsAndLogout() {
-    Row(
-        horizontalArrangement = Arrangement.SpaceAround,
-        verticalAlignment = Alignment.CenterVertically,
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 16.dp)
+            .padding(vertical = 14.dp)
     ) {
-        Box(
-            modifier = Modifier
-                .weight(1f),
-            contentAlignment = Alignment.Center
-        ) {
-            Flickers()
-        }
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.limbo_flame),
-                contentDescription = "Limbo Logo",
-                modifier = Modifier
-                    .size(48.dp)
-            )
-            Text(
-                text = "Limbo",
-                fontSize = 36.sp,
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.SemiBold,
-                color = TextOrange
-            )
-        }
-        Box(
-            modifier = Modifier
-                .weight(1f),
-            contentAlignment = Alignment.Center
-        ) {
-            LogoutButton()
-        }
+        Flickers(
+            Modifier
+                .align(Alignment.CenterStart)
+                .padding(start = 26.dp))
+        LimboLogo(Modifier.align(Alignment.Center))
+        LogoutButton(
+            Modifier
+                .align(Alignment.CenterEnd)
+                .padding(end = 26.dp))
     }
 }
 
 @Composable
-fun Flickers(
-    modifier: Modifier = Modifier,
-) {
+fun LimboLogo(modifier: Modifier = Modifier) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.limbo_flame),
+            contentDescription = "Limbo Logo",
+            modifier = Modifier
+                .size(48.dp)
+        )
+        Text(
+            text = "Limbo",
+            fontSize = 36.sp,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.SemiBold,
+            color = TextOrange
+        )
+    }
+}
+
+@Composable
+fun Flickers(modifier: Modifier = Modifier) {
+
     val points by remember { mutableStateOf(50) }
 
     Flickers(
@@ -163,9 +135,9 @@ fun Flickers(
 }
 
 @Composable
-fun LogoutButton() {
+fun LogoutButton(modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .clip(RoundedCornerShape(10.dp))
             .background(DarkGray)
             .clickable { }
@@ -199,10 +171,10 @@ fun CircleImage(
 }
 
 @Composable
-fun ChangePassword() {
+fun ChangePassword(modifier: Modifier = Modifier) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        modifier = modifier
     ) {
         Text(
             text = "Zmień hasło",
@@ -247,12 +219,13 @@ fun ChangePassword() {
             Log.d("LOG_TAG", "Finished ${oldPassword.value}")
         }
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(16.dp))
+
         GradientButton(
             text = "Zmień hasło",
             textColor = TextWhite,
             gradient = horizontalOrangeGradient,
-            width = 0.5f
+            width = 0.45f
         ) {
 
         }
@@ -260,85 +233,127 @@ fun ChangePassword() {
 }
 
 @Composable
-fun RedeemFlickers() {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .padding(24.dp)
-            .fillMaxWidth()
+fun RedeemFlickersCard(modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier
+            .padding(horizontal = 26.dp)
+            .clip(RoundedCornerShape(26.dp))
+            .border(
+                width = 1.5.dp,
+                brush = horizontalOrangeGradient,
+                shape = RoundedCornerShape(26.dp)
+            )
+            .background(horizontalBlackGradient)
+            .padding(start = 26.dp, end = 16.dp, top = 20.dp, bottom = 20.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = "Wymień płomyki na bonusy",
-            color = TextWhite,
-            fontFamily = Montserrat,
-            fontWeight = FontWeight.Medium,
-            fontSize = 14.sp
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(20.dp))
-                .border(
-                    width = 4.dp,
-                    brush = horizontalOrangeGradient,
-                    shape = RoundedCornerShape(20.dp)
-                )
-                .background(horizontalBlackGradient)
-                .padding(horizontal = 14.dp, vertical = 18.dp)
-                .clickable { }
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.weight(2f)
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceAround,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(2f),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = "Płomyki do wymiany",
-                        color = TextWhite,
-                        fontFamily = Montserrat,
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 16.sp,
-                        textAlign = TextAlign.Center
-                    )
-                    Text(
-                        text = "49",
-                        color = TextOrange,
-                        fontFamily = Montserrat,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 24.sp
-                    )
-                    Text(
-                        text = "Kliknij, aby przejść do ekranu wymiany płomyków",
-                        color = TextWhite,
-                        fontFamily = Montserrat,
-                        fontWeight = FontWeight.Light,
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center
-                    )
-                }
-                Image(
-                    painter = painterResource(id = R.drawable.ic_redeem),
-                    contentDescription = "Wymień płomyki",
-                    modifier = Modifier
-                        .weight(1f)
-                )
-            }
+            Text(
+                text = "Płomyki do wymiany",
+                color = TextWhite,
+                fontSize = 16.sp,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.SemiBold,
+                textAlign = TextAlign.Center
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(
+                text = "49",
+                color = TextOrange,
+                fontSize = 30.sp,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.SemiBold,
+                textAlign = TextAlign.Center
+            )
+            Spacer(Modifier.height(6.dp))
+            Text(
+                text = "Kliknij aby przejeść do ekranu wymiany płomyków.",
+                color = TextWhite,
+                fontSize = 12.sp,
+                fontFamily = Montserrat,
+                fontWeight = FontWeight.Light,
+                textAlign = TextAlign.Center
+            )
         }
+        Image(
+            painter = painterResource(id = R.drawable.ic_redeem),
+            contentDescription = null,
+            modifier = Modifier.weight(1f)
+        )
     }
 }
 
+@Composable
+fun RedeemFlickersSection(modifier: Modifier = Modifier) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        Text(
+            text = "Wymień punkty na bonusy",
+            color = TextWhite,
+            fontSize = 16.sp,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier.paddingFromBaseline(bottom = 18.dp)
+        )
+        RedeemFlickersCard()
+    }
+}
+
+@Composable
+fun ProfileInfo(modifier: Modifier = Modifier) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        CircleImage(
+            imageID = R.drawable.profile_pic,
+            contentDescription = "Profile picture",
+            size = 100.dp
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(
+            text = "Igor Joński",
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Medium,
+            fontSize = 18.sp
+        )
+        Text(
+            text = "jonskiigor@gmail.com",
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Light,
+            fontSize = 14.sp
+        )
+    }
+}
+
+// ---------------------
 @Preview
 @Composable
 fun FlickersPreview() {
     Flickers(flickers = 50)
+}
+
+@Preview
+@Composable
+fun RedeemFlickersPreview() {
+    RedeemFlickersCard()
+}
+
+@Preview
+@Composable
+fun RedeemFlickersSectionPreview() {
+    RedeemFlickersSection()
+}
+
+@Preview
+@Composable
+fun ProfileInfoPreview() {
+    ProfileInfo()
 }

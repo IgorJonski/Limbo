@@ -43,7 +43,7 @@ fun LoginScreen() {
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            LimboLogo()
+            LimboLogoToFix()
         }
         Box(
             modifier = Modifier
@@ -68,7 +68,7 @@ fun LoginScreen() {
 }
 
 @Composable
-fun LimboLogo() {
+fun LimboLogoToFix() {
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
