@@ -1,4 +1,4 @@
-package com.app.limboapp.components
+package com.app.limboapp.nav
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.height

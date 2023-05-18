@@ -16,7 +16,7 @@ val CircleGray = Color(0xFF1E1E1E)
 val LightGreen = Color(0xFF3FB105)
 val DarkGreen = Color(0xFF12350A)
 
-val horizontalOrangeGradient = Brush.horizontalGradient(
+val orangeGradient = Brush.horizontalGradient(
     colors = listOf(
         DarkOrange,
         MediumOrange,
@@ -28,6 +28,13 @@ val greenGradient = Brush.horizontalGradient(
     colors = listOf(
         LightGreen,
         DarkGreen
+    )
+)
+
+val redGradient = Brush.horizontalGradient(
+    colors = listOf(
+        Color(0xFF580A05),
+        Color(0xFF1A0A09),
     )
 )
 

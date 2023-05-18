@@ -1,4 +1,4 @@
-package com.app.limboapp.ui
+package com.app.limboapp.screens
 
 import android.util.Log
 import androidx.annotation.DrawableRes

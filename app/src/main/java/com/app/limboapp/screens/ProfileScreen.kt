@@ -1,4 +1,4 @@
-package com.app.limboapp.ui
+package com.app.limboapp.screens
 
 import android.util.Log
 import androidx.compose.foundation.*
@@ -24,13 +24,12 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.limboapp.R
-import com.app.limboapp.components.LimboBottomNavigation
+import com.app.limboapp.nav.LimboBottomNavigation
 import com.app.limboapp.ui.theme.*
 
 @Preview
 @Composable
 fun ProfileScreen() {
-
     Scaffold(
         backgroundColor = BlackBackground,
         topBar = {
@@ -55,9 +54,9 @@ fun ProfileScreen() {
 }
 
 @Composable
-fun LimboLogoWithPointsAndLogout() {
+fun LimboLogoWithPointsAndLogout(modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 14.dp)
     ) {
@@ -159,18 +158,19 @@ fun LogoutButton(modifier: Modifier = Modifier) {
 
 @Composable
 fun CircleImage(
+    modifier: Modifier = Modifier,
     imageID: Int,
     contentDescription: String,
     size: Dp,
     onClick: () -> Unit = {}
 ) {
     Image(
-        painter = painterResource(id = imageID),
-        contentDescription = contentDescription,
-        modifier = Modifier
+        modifier = modifier
             .size(size)
             .clip(CircleShape)
-            .clickable { onClick() }
+            .clickable { onClick() },
+        painter = painterResource(id = imageID),
+        contentDescription = contentDescription
     )
 }
 
@@ -228,7 +228,7 @@ fun ChangePassword(modifier: Modifier = Modifier) {
         GradientButton(
             text = "Zmień hasło",
             textColor = TextWhite,
-            gradient = horizontalOrangeGradient,
+            gradient = orangeGradient,
             width = 0.45f
         ) {
 
@@ -244,7 +244,7 @@ fun RedeemFlickersCard(modifier: Modifier = Modifier) {
             .clip(RoundedCornerShape(26.dp))
             .border(
                 width = 1.5.dp,
-                brush = horizontalOrangeGradient,
+                brush = orangeGradient,
                 shape = RoundedCornerShape(26.dp)
             )
             .background(horizontalBlackGradient)
