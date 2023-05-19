@@ -77,10 +77,10 @@ fun ChaptersSection(modifier: Modifier = Modifier) {
             text = "Rozdziały",
             color = TextWhite,
             fontFamily = Montserrat,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Medium,
             fontSize = 20.sp,
             modifier = Modifier
-                .padding(bottom = 16.dp, start = 26.dp)
+                .padding(bottom = 16.dp, start = 20.dp)
         )
         ChaptersList()
     }
@@ -98,7 +98,7 @@ fun ChaptersList(
                 gainedPoints = item.gainedPoints,
                 isUnlocked = item.isUnlocked,
                 modifier = Modifier
-                    .padding(horizontal = 26.dp)
+                    .padding(horizontal = 20.dp)
                     .padding(bottom = 14.dp)
             )
         }
@@ -194,14 +194,15 @@ fun Chapter(
 fun CircularProgressBar(
     modifier: Modifier = Modifier,
     percentage: Float,
-    number: Int,
+    number: Int = 100,
     fontSize: TextUnit = 28.sp,
     radius: Dp = 35.dp,
     progressGradient: Brush = circleProgressOrangeGradient,
     strokeWidth: Dp = 8.dp,
     animDuration: Int = 1000,
     animDelay: Int = 0,
-    initValue: Float = 0f
+    initValue: Float = 0f,
+    isUnlocked: Boolean = true
 ) {
     var animationPlayed by remember {
         mutableStateOf(false)
@@ -232,7 +233,7 @@ fun CircularProgressBar(
             drawArc(
                 brush = progressGradient,
                 startAngle = -90f,
-                sweepAngle = 360f * curPercentage.value,
+                sweepAngle = if (isUnlocked) 360f * curPercentage.value else 360f,
                 useCenter = false,
                 style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
             )
@@ -241,12 +242,13 @@ fun CircularProgressBar(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            val percentageTextSize = 18.sp * (radius / 35.dp)
             Text(
                 text = (curPercentage.value * number).toInt().toString() + "%",
                 color = TextWhite,
                 fontFamily = Montserrat,
                 fontWeight = FontWeight.SemiBold,
-                fontSize = 18.sp
+                fontSize = percentageTextSize
             )
         }
     }
@@ -290,7 +292,7 @@ fun getFakeChaptersData(): List<ChapterData> {
     return listOf(
         ChapterData("Operacje na danych", 15, 15, true),
         ChapterData("Instrukcje warunkowe", 7, 15, true),
-        ChapterData("Pętle, instrukcje iteracyjne", 0, 15, true),
+        ChapterData("Pętle, instrukcje iteracyjne", 0, 15),
         ChapterData("Pętle, instrukcje iteracyjne", 0, 15),
         ChapterData("Pętle, instrukcje iteracyjne", 0, 15),
         ChapterData("Pętle, instrukcje iteracyjne", 0, 15),
