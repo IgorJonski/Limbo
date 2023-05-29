@@ -203,7 +203,7 @@ fun MiniChapter(
                 brush = borderGradient,
                 shape = RoundedCornerShape(25.dp)
             )
-            .padding(top = 14.dp ,bottom = 10.dp)
+            .padding(top = 14.dp, bottom = 10.dp)
             .padding(horizontal = 16.dp)
             .height(136.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -251,6 +251,22 @@ fun MiniChapterGrid(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun MiniChapterSection(modifier: Modifier = Modifier) {
+    Column(modifier = modifier) {
+        Text(
+            text = "Nauka",
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Medium,
+            fontSize = 20.sp,
+            modifier = Modifier
+                .padding(bottom = 16.dp, start = 20.dp)
+        )
+        MiniChapterGrid()
+    }
+}
+
 // ------------------
 
 @Preview
@@ -281,6 +297,12 @@ fun MiniChapterPreview() {
 @Composable
 fun MiniChapterGridPreview() {
     MiniChapterGrid()
+}
+
+@Preview
+@Composable
+fun MiniChapterSectionPreview() {
+    MiniChapterSection()
 }
 
 // ------------------
