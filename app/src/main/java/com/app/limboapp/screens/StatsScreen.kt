@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.app.limboapp.ui.theme.BlackBackground
 import com.app.limboapp.ui.theme.Montserrat
 import com.app.limboapp.ui.theme.TextWhite
+import com.app.limboapp.ui.theme.horizontalBlackGradient
 import com.app.limboapp.ui.theme.orangeGradient
 
 @Composable
@@ -86,6 +87,46 @@ fun StatsSection(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun GainedBonusCard(
+    modifier: Modifier = Modifier,
+    borderGradient: Brush = orangeGradient,
+    text: String
+) {
+    Column(
+        modifier = modifier
+            .clip(RoundedCornerShape(25.dp))
+            .background(horizontalBlackGradient)
+            .border(
+                width = 1.dp,
+                brush = borderGradient,
+                shape = RoundedCornerShape(25.dp)
+            ),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Text(
+            modifier = Modifier.padding(top = 16.dp),
+            text = "+21",
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Bold,
+            fontSize = 32.sp,
+            textAlign = TextAlign.Center
+        )
+        Text(
+            modifier = Modifier
+                .padding(bottom = 14.dp)
+                .padding(horizontal = 20.dp),
+            text = text,
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Medium,
+            fontSize = 10.sp,
+            textAlign = TextAlign.Center
+        )
+    }
+}
 //-----------------------------------------
 
 @Preview
@@ -101,4 +142,10 @@ fun StatsRowPreview() {
 @Composable
 fun StatsSectionPreview() {
     StatsSection()
+}
+
+@Preview
+@Composable
+fun GainedBonusCardPreview() {
+    GainedBonusCard(text = "Dodatkowe punkty na egzaminie")
 }
