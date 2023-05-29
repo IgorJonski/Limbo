@@ -63,7 +63,14 @@ fun HomeScreen() {
             LimboBottomNavigation()
         }
     ) {
-
+        Column(
+            modifier = Modifier
+                .padding(paddingValues = it)
+        ) {
+            BestInGroupSection()
+            Spacer(modifier = Modifier.height(20.dp))
+            MiniChapterSection()
+        }
     }
 }
 
@@ -303,6 +310,12 @@ fun MiniChapterGridPreview() {
 @Composable
 fun MiniChapterSectionPreview() {
     MiniChapterSection()
+}
+
+@Preview
+@Composable
+fun HomeScreenPreview() {
+    HomeScreen()
 }
 
 // ------------------
