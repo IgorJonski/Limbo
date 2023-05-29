@@ -3,6 +3,7 @@ package com.app.limboapp.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -72,6 +73,19 @@ fun StatsRow(
     }
 }
 
+@Composable
+fun StatsSection(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        StatsRow(text = "Wykonanych pytań", value = "25")
+        StatsRow(text = "Ukończonych działów", value = "1")
+        StatsRow(text = "Średni czas na pytanie", value = "5,5s")
+        StatsRow(text = "Najwięcej pytań w ciągu dnia", value = "15")
+    }
+}
+
 //-----------------------------------------
 
 @Preview
@@ -81,4 +95,10 @@ fun StatsRowPreview() {
         text = "Wykonanych pytań",
         value = "20"
     )
+}
+
+@Preview
+@Composable
+fun StatsSectionPreview() {
+    StatsSection()
 }
