@@ -2,8 +2,11 @@ package com.app.limboapp.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -48,6 +51,25 @@ fun GainedFlickersBadge(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun GainedFlickersSection(modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = "Twoje dostępne punkty",
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Medium,
+            fontSize = 14.sp,
+            textAlign = TextAlign.Center,
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        GainedFlickersBadge()
+    }
+}
+
 // --------------------
 
 @Preview
@@ -60,4 +82,10 @@ fun RedeemPointsScreenPreview() {
 @Composable
 fun GainedFlickersBadgePreview() {
     GainedFlickersBadge()
+}
+
+@Preview
+@Composable
+fun GainedFlickersSectionPreview() {
+    GainedFlickersSection()
 }
