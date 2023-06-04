@@ -47,7 +47,6 @@ fun StatsRow(
 ) {
     Row(
         modifier = modifier
-            .padding(horizontal = 16.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(25.dp))
             .border(
@@ -169,7 +168,7 @@ fun GainedBonusRow(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun GainedBonusSector(modifier: Modifier = Modifier) {
+fun GainedBonusSection(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -178,7 +177,7 @@ fun GainedBonusSector(modifier: Modifier = Modifier) {
             text = "Otrzymane bonusy",
             color = TextWhite,
             fontFamily = Montserrat,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Medium,
             fontSize = 14.sp
         )
         Spacer(modifier = Modifier.height(12.dp))
@@ -186,6 +185,26 @@ fun GainedBonusSector(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun StatsScreenContent(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp)
+    ) {
+        Text(
+            text = "Statystyki",
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.Medium,
+            fontSize = 20.sp
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        StatsSection()
+        Spacer(modifier = Modifier.height(26.dp))
+        GainedBonusSection()
+    }
+}
 
 @Preview
 @Composable
@@ -216,6 +235,12 @@ fun GainedBonusRowPreview() {
 
 @Preview
 @Composable
-fun GainedBonusSectorPreview() {
-    GainedBonusSector()
+fun GainedBonusSectionPreview() {
+    GainedBonusSection()
+}
+
+@Preview
+@Composable
+fun StatsScreenContentPreview() {
+    StatsScreenContent()
 }
