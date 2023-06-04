@@ -8,8 +8,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,12 +24,28 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.limboapp.R
+import com.app.limboapp.nav.LimboBottomNavigation
+import com.app.limboapp.ui.theme.BlackBackground
 import com.app.limboapp.ui.theme.Montserrat
 import com.app.limboapp.ui.theme.TextWhite
 
 @Composable
 fun RedeemPointsScreen() {
-
+    Scaffold(
+        backgroundColor = BlackBackground,
+        topBar = {
+            LimboLogoWithPointsAndProfile()
+        },
+        bottomBar = {
+            LimboBottomNavigation()
+        }
+    ) { paddingValues ->
+        RedeemPointsContent(
+            modifier = Modifier
+                .padding(horizontal = 20.dp)
+                .padding(paddingValues)
+        )
+    }
 }
 
 @Composable
