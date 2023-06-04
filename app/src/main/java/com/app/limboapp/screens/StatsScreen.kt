@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -136,7 +137,7 @@ fun GainedBonusCard(
 }
 
 @Composable
-fun GainedBonusRow() {
+fun GainedBonusRow(modifier: Modifier = Modifier) {
 
     val localDensity = LocalDensity.current
 
@@ -145,7 +146,7 @@ fun GainedBonusRow() {
     // TODO ask if it isn't a  infinite recomposition (could I use height on Row?)
 
     Row(
-        modifier = Modifier
+        modifier = modifier
             .onGloballyPositioned { coordinates ->
                 tallestColumnHeightDp = with(localDensity) {
                     coordinates.size.height.toDp()
@@ -167,7 +168,24 @@ fun GainedBonusRow() {
     }
 }
 
-//-----------------------------------------
+@Composable
+fun GainedBonusSector(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Otrzymane bonusy",
+            color = TextWhite,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 14.sp
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        GainedBonusRow()
+    }
+}
+
 
 @Preview
 @Composable
@@ -194,4 +212,10 @@ fun GainedBonusCardPreview() {
 @Composable
 fun GainedBonusRowPreview() {
     GainedBonusRow()
+}
+
+@Preview
+@Composable
+fun GainedBonusSectorPreview() {
+    GainedBonusSector()
 }
