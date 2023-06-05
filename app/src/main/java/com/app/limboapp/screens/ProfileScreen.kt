@@ -66,9 +66,11 @@ fun LimboLogoWithPointsAndLogout(modifier: Modifier = Modifier) {
                 .padding(start = 26.dp))
         LimboLogo(Modifier.align(Alignment.Center))
         LogoutButton(
-            Modifier
+            modifier = Modifier
                 .align(Alignment.CenterEnd)
-                .padding(end = 26.dp))
+                .padding(end = 26.dp),
+            onClick = { }
+        )
     }
 }
 
@@ -102,21 +104,23 @@ fun Flickers(modifier: Modifier = Modifier) {
 
     Flickers(
         modifier = modifier,
-        flickers = points
+        flickers = points,
+        onClick = { }
     )
 }
 
 @Composable
 fun Flickers(
     modifier: Modifier = Modifier,
-    flickers: Int
+    flickers: Int,
+    onClick: () -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .clip(RoundedCornerShape(16.dp))
             .background(DarkGray)
-            .clickable { }
+            .clickable { onClick() }
     ) {
         Image(
             painter = painterResource(id = R.drawable.limbo_flame),
@@ -138,12 +142,16 @@ fun Flickers(
 }
 
 @Composable
-fun LogoutButton(modifier: Modifier = Modifier) {
+fun LogoutButton(
+    modifier: Modifier = Modifier,
+    size: Dp = 26.dp,
+    onClick: () -> Unit
+) {
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(10.dp))
             .background(DarkGray)
-            .clickable { }
+            .clickable { onClick() }
             .padding(8.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -151,7 +159,7 @@ fun LogoutButton(modifier: Modifier = Modifier) {
             painter = painterResource(id = R.drawable.ic_logout),
             contentDescription = "Logout",
             modifier = Modifier
-                .size(20.dp)
+                .size(size)
         )
     }
 }
@@ -160,7 +168,7 @@ fun LogoutButton(modifier: Modifier = Modifier) {
 fun CircleImage(
     modifier: Modifier = Modifier,
     imageID: Int,
-    contentDescription: String,
+    contentDescription: String?,
     size: Dp,
     onClick: () -> Unit = {}
 ) {
@@ -338,10 +346,35 @@ fun ProfileInfo(modifier: Modifier = Modifier) {
 }
 
 // ---------------------
+
+@Preview
+@Composable
+fun LimboLogoPreview() {
+    LimboLogo()
+}
+
 @Preview
 @Composable
 fun FlickersPreview() {
-    Flickers(flickers = 50)
+    Flickers(flickers = 50, onClick = { })
+}
+
+@Preview
+@Composable
+fun CircleImagePreview() {
+    CircleImage(
+        imageID = R.drawable.profile_pic,
+        contentDescription = "Profile",
+        size = 40.dp
+    )
+}
+
+@Preview
+@Composable
+fun LogoutButtonPreview() {
+    LogoutButton(
+        onClick = { }
+    )
 }
 
 @Preview
