@@ -26,16 +26,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.limboapp.R
+import com.app.limboapp.model.TopBarMode
 import com.app.limboapp.ui.theme.DarkGray
 import com.app.limboapp.ui.theme.Montserrat
 import com.app.limboapp.ui.theme.TextOrange
 import com.app.limboapp.ui.theme.TextWhite
-
-@Composable
-fun LimboTopBar() {
-
-}
-
 
 @Composable
 fun LimboLogo(modifier: Modifier = Modifier) {
@@ -191,12 +186,54 @@ fun LimboLogoWithPointsAndLogout(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun LimboTopBar(
+    modifier: Modifier = Modifier,
+    mode: TopBarMode
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = 14.dp)
+    ) {
+        Flickers(
+            Modifier
+                .align(Alignment.CenterStart)
+                .padding(start = 26.dp)
+        )
+        LimboLogo(Modifier.align(Alignment.Center))
+        if (mode == TopBarMode.LOGOUT) {
+            LogoutButton(
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .padding(end = 26.dp),
+                onClick = { }
+            )
+        } else if (mode == TopBarMode.PROFILE) {
+            CircleImage(
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .padding(end = 30.dp),
+                imageID = R.drawable.profile_pic,
+                contentDescription = "Profile",
+                size = 40.dp
+            )
+        }
+    }
+}
+
 // --------------------
 
 @Preview
 @Composable
-fun LimboTopBarPreview() {
-    LimboTopBar()
+fun LimboTopBarProfilePreview() {
+    LimboTopBar(mode = TopBarMode.PROFILE)
+}
+
+@Preview
+@Composable
+fun LimboTopBarLogoutPreview() {
+    LimboTopBar(mode = TopBarMode.LOGOUT)
 }
 
 @Preview
