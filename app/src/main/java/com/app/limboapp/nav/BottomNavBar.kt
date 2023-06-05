@@ -1,9 +1,10 @@
 package com.app.limboapp.nav
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -31,7 +32,8 @@ fun BottomNavBar(
                 selected = selected,
                 onClick = { onItemClick(item) },
                 icon = {
-                    Icon(
+                    Image(
+                        modifier = Modifier.size(30.dp),
                         painter = painterResource(
                             id = if (selected) {
                                 item.selectedIconId
@@ -66,7 +68,7 @@ val bottomNavBarItems = listOf<BottomNavItem>(
     BottomNavItem(
         "Profile",
         PROFILE_SCREEN,
-        R.drawable.profile_pic,
+        R.drawable.ic_profile,
         R.drawable.ic_selected_profile
     )
 )
