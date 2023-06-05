@@ -23,7 +23,6 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -38,11 +37,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.limboapp.R
-import com.app.limboapp.common.LimboTopBar
 import com.app.limboapp.model.ChapterData
 import com.app.limboapp.model.Person
-import com.app.limboapp.model.TopBarMode
-import com.app.limboapp.nav.LimboBottomNavigation
 import com.app.limboapp.ui.theme.BlackBackground
 import com.app.limboapp.ui.theme.MiniFlickersBackground
 import com.app.limboapp.ui.theme.Montserrat
@@ -56,24 +52,7 @@ import com.app.limboapp.ui.theme.redGradient
 
 @Composable
 fun HomeScreen() {
-    Scaffold(
-        backgroundColor = BlackBackground,
-        topBar = {
-            LimboTopBar(mode = TopBarMode.PROFILE)
-        },
-        bottomBar = {
-            LimboBottomNavigation()
-        }
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(paddingValues = it)
-        ) {
-            BestInGroupSection()
-            Spacer(modifier = Modifier.height(20.dp))
-            MiniChapterSection()
-        }
-    }
+    HomeSection(modifier = Modifier.background(BlackBackground))
 }
 
 @Composable
@@ -276,6 +255,15 @@ fun MiniChapterSection(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun HomeSection(modifier: Modifier = Modifier) {
+    Column(modifier = modifier) {
+        BestInGroupSection()
+        Spacer(modifier = Modifier.height(20.dp))
+        MiniChapterSection()
+    }
+}
+
 // ------------------
 
 @Preview
@@ -318,6 +306,12 @@ fun MiniChapterSectionPreview() {
 @Composable
 fun HomeScreenPreview() {
     HomeScreen()
+}
+
+@Preview
+@Composable
+fun HomeSectionPreview() {
+    HomeSection()
 }
 
 // ------------------
