@@ -51,8 +51,8 @@ import com.app.limboapp.ui.theme.orangeGradient
 import com.app.limboapp.ui.theme.redGradient
 
 @Composable
-fun HomeScreen() {
-    HomeSection(modifier = Modifier.background(BlackBackground))
+fun HomeScreen(modifier: Modifier = Modifier) {
+    HomeSection(modifier = modifier.background(BlackBackground))
 }
 
 @Composable

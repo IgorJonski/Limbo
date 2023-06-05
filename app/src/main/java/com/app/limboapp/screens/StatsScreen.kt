@@ -34,8 +34,8 @@ import com.app.limboapp.ui.theme.horizontalBlackGradient
 import com.app.limboapp.ui.theme.orangeGradient
 
 @Composable
-fun StatsScreen() {
-    StatsScreenContent(modifier = Modifier.background(BlackBackground))
+fun StatsScreen(modifier: Modifier = Modifier) {
+    StatsScreenContent(modifier = modifier.background(BlackBackground))
 }
 
 @Composable
