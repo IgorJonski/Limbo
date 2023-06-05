@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -26,26 +25,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.app.limboapp.common.LimboTopBar
 import com.app.limboapp.model.ChapterData
-import com.app.limboapp.model.TopBarMode
-import com.app.limboapp.nav.LimboBottomNavigation
 import com.app.limboapp.ui.theme.*
 
 @Preview
 @Composable
 fun ChaptersScreen() {
-    Scaffold(
-        backgroundColor = BlackBackground,
-        topBar = {
-            LimboTopBar(mode = TopBarMode.PROFILE)
-        },
-        bottomBar = {
-            LimboBottomNavigation()
-        }
-    ) { paddingValues ->
-        ChaptersSection(Modifier.padding(paddingValues))
-    }
+    ChaptersSection(modifier = Modifier.background(BlackBackground))
 }
 
 @Composable

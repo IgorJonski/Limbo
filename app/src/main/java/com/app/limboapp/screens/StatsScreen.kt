@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,9 +27,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.app.limboapp.common.LimboTopBar
-import com.app.limboapp.model.TopBarMode
-import com.app.limboapp.nav.LimboBottomNavigation
 import com.app.limboapp.ui.theme.BlackBackground
 import com.app.limboapp.ui.theme.Montserrat
 import com.app.limboapp.ui.theme.TextWhite
@@ -39,17 +35,7 @@ import com.app.limboapp.ui.theme.orangeGradient
 
 @Composable
 fun StatsScreen() {
-    Scaffold(
-        backgroundColor = BlackBackground,
-        topBar = {
-            LimboTopBar(mode = TopBarMode.PROFILE)
-        },
-        bottomBar = {
-            LimboBottomNavigation()
-        }
-    ) { paddingValues ->
-        StatsScreenContent(modifier = Modifier.padding(paddingValues))
-    }
+    StatsScreenContent(modifier = Modifier.background(BlackBackground))
 }
 
 @Composable
