@@ -22,7 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.limboapp.R
 import com.app.limboapp.common.CircleImage
-import com.app.limboapp.common.LimboLogoWithPointsAndLogout
+import com.app.limboapp.common.LimboTopBar
+import com.app.limboapp.model.TopBarMode
 import com.app.limboapp.nav.LimboBottomNavigation
 import com.app.limboapp.ui.theme.*
 
@@ -32,7 +33,7 @@ fun ProfileScreen() {
     Scaffold(
         backgroundColor = BlackBackground,
         topBar = {
-            LimboLogoWithPointsAndLogout()
+            LimboTopBar(mode = TopBarMode.LOGOUT)
         },
         bottomBar = {
             LimboBottomNavigation()

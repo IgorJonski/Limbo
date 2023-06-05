@@ -24,7 +24,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.limboapp.R
-import com.app.limboapp.common.LimboLogoWithPointsAndProfile
+import com.app.limboapp.common.LimboTopBar
+import com.app.limboapp.model.TopBarMode
 import com.app.limboapp.nav.LimboBottomNavigation
 import com.app.limboapp.ui.theme.BlackBackground
 import com.app.limboapp.ui.theme.Montserrat
@@ -35,7 +36,7 @@ fun RedeemPointsScreen() {
     Scaffold(
         backgroundColor = BlackBackground,
         topBar = {
-            LimboLogoWithPointsAndProfile()
+            LimboTopBar(mode = TopBarMode.PROFILE)
         },
         bottomBar = {
             LimboBottomNavigation()
