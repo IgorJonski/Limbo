@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.app.limboapp.R
+import com.app.limboapp.common.LimboLogoWithPointsAndProfile
 import com.app.limboapp.model.ChapterData
 import com.app.limboapp.nav.LimboBottomNavigation
 import com.app.limboapp.ui.theme.*
@@ -44,29 +44,6 @@ fun ChaptersScreen() {
         }
     ) { paddingValues ->
         ChaptersSection(Modifier.padding(paddingValues))
-    }
-}
-
-@Composable
-fun LimboLogoWithPointsAndProfile(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 14.dp)
-    ) {
-        Flickers(
-            Modifier
-                .align(Alignment.CenterStart)
-                .padding(start = 26.dp))
-        LimboLogo(Modifier.align(Alignment.Center))
-        CircleImage(
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .padding(end = 30.dp),
-            imageID = R.drawable.profile_pic,
-            contentDescription = "Profile",
-            size = 40.dp
-        )
     }
 }
 
@@ -254,12 +231,7 @@ fun CircularProgressBar(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun LimboTopBarPreview() {
-    LimboLogoWithPointsAndProfile()
-}
-
+// --------------------
 
 @Preview(showBackground = true)
 @Composable
