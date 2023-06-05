@@ -141,52 +141,6 @@ fun CircleImage(
 }
 
 @Composable
-fun LimboLogoWithPointsAndProfile(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 14.dp)
-    ) {
-        Flickers(
-            Modifier
-                .align(Alignment.CenterStart)
-                .padding(start = 26.dp)
-        )
-        LimboLogo(Modifier.align(Alignment.Center))
-        CircleImage(
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .padding(end = 30.dp),
-            imageID = R.drawable.profile_pic,
-            contentDescription = "Profile",
-            size = 40.dp
-        )
-    }
-}
-
-@Composable
-fun LimboLogoWithPointsAndLogout(modifier: Modifier = Modifier) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 14.dp)
-    ) {
-        Flickers(
-            Modifier
-                .align(Alignment.CenterStart)
-                .padding(start = 26.dp)
-        )
-        LimboLogo(Modifier.align(Alignment.Center))
-        LogoutButton(
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .padding(end = 26.dp),
-            onClick = { }
-        )
-    }
-}
-
-@Composable
 fun LimboTopBar(
     modifier: Modifier = Modifier,
     mode: TopBarMode
@@ -264,16 +218,4 @@ fun CircleImagePreview() {
         contentDescription = "Profile",
         size = 40.dp
     )
-}
-
-@Preview
-@Composable
-fun LimboLogoWithPointsAndProfilePreview() {
-    LimboLogoWithPointsAndProfile()
-}
-
-@Preview
-@Composable
-fun LimboLogoWithPointsAndLogoutPreview() {
-    LimboLogoWithPointsAndLogout()
 }
