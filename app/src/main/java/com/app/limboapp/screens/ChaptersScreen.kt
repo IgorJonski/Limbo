@@ -30,8 +30,8 @@ import com.app.limboapp.ui.theme.*
 
 @Preview
 @Composable
-fun ChaptersScreen() {
-    ChaptersSection(modifier = Modifier.background(BlackBackground))
+fun ChaptersScreen(modifier: Modifier = Modifier) {
+    ChaptersSection(modifier = modifier.background(BlackBackground))
 }
 
 @Composable

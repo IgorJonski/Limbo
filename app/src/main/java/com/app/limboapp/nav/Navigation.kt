@@ -22,16 +22,16 @@ fun Navigation(
 ) {
     NavHost(navController = navController, startDestination = HOME_SCREEN) {
         composable(HOME_SCREEN) {
-            HomeScreen()
+            HomeScreen(modifier = modifier)
         }
         composable(CHAPTERS_SCREEN) {
-            ChaptersScreen()
+            ChaptersScreen(modifier = modifier)
         }
         composable(STATS_SCREEN) {
-            StatsScreen()
+            StatsScreen(modifier = modifier)
         }
         composable(PROFILE_SCREEN) {
-            ProfileScreen()
+            ProfileScreen(modifier = modifier)
         }
     }
 }

@@ -25,8 +25,8 @@ import com.app.limboapp.ui.theme.*
 
 @Preview
 @Composable
-fun ProfileScreen() {
-    ProfileSection(modifier = Modifier.background(BlackBackground))
+fun ProfileScreen(modifier: Modifier = Modifier) {
+    ProfileSection(modifier = modifier.background(BlackBackground))
 }
 
 @Composable
