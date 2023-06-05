@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -22,34 +21,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.limboapp.R
 import com.app.limboapp.common.CircleImage
-import com.app.limboapp.common.LimboTopBar
-import com.app.limboapp.model.TopBarMode
-import com.app.limboapp.nav.LimboBottomNavigation
 import com.app.limboapp.ui.theme.*
 
 @Preview
 @Composable
 fun ProfileScreen() {
-    Scaffold(
-        backgroundColor = BlackBackground,
-        topBar = {
-            LimboTopBar(mode = TopBarMode.LOGOUT)
-        },
-        bottomBar = {
-            LimboBottomNavigation()
-        }
-    ) { paddingValues ->
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(paddingValues)
-        ) {
-            Spacer(modifier = Modifier.height(8.dp))
-            ProfileInfo()
-            ChangePassword(Modifier.padding(top = 16.dp))
-            RedeemFlickersSection(Modifier.padding(top = 30.dp, bottom = 16.dp))
-        }
+    ProfileSection(modifier = Modifier.background(BlackBackground))
+}
+
+@Composable
+fun ProfileSection(modifier: Modifier = Modifier) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+            .verticalScroll(rememberScrollState())
+    ) {
+        Spacer(modifier = Modifier.height(8.dp))
+        ProfileInfo()
+        ChangePassword(Modifier.padding(top = 16.dp))
+        RedeemFlickersSection(Modifier.padding(top = 30.dp, bottom = 16.dp))
     }
 }
 
@@ -234,4 +224,10 @@ fun RedeemFlickersSectionPreview() {
 @Composable
 fun ProfileInfoPreview() {
     ProfileInfo()
+}
+
+@Preview
+@Composable
+fun ProfileSectionPreview() {
+    ProfileSection()
 }
