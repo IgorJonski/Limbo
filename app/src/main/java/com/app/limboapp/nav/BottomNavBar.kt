@@ -46,7 +46,7 @@ fun BottomNavBar(
     }
 }
 
-val bottomNavBarItems = listOf<BottomNavItem>(
+val bottomNavBarItems = listOf(
     BottomNavItem(
         "Home",
         HOME_SCREEN,
