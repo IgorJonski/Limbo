@@ -33,7 +33,9 @@ import com.app.limboapp.ui.theme.*
 
 @Preview
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    onLoginClick: () -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -58,7 +60,7 @@ fun LoginScreen() {
         ) {
             LoginRegisterOption(
                 buttonText = "Zaloguj się",
-                onButtonClick = {},
+                onButtonClick = onLoginClick,
                 secondOptionFirstText = "Nie masz konta? ",
                 secondOptionSecondText = "Zarejestruj się",
                 onSecondOptionClick = {}

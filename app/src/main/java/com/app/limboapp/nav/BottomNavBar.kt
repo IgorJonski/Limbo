@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.app.limboapp.R
 import com.app.limboapp.ui.theme.DarkGray
@@ -18,7 +18,7 @@ import com.app.limboapp.ui.theme.DarkGray
 fun BottomNavBar(
     modifier: Modifier = Modifier,
     items: List<BottomNavItem>,
-    navController: NavController,
+    navController: NavHostController,
     onItemClick: (BottomNavItem) -> Unit
 ) {
     val backstackEntry = navController.currentBackStackEntryAsState()
@@ -49,25 +49,25 @@ fun BottomNavBar(
 val bottomNavBarItems = listOf(
     BottomNavItem(
         "Home",
-        HOME_SCREEN,
+        LimboNavGraph.Home.route,
         R.drawable.ic_home,
         R.drawable.ic_selected_home
     ),
     BottomNavItem(
         "Chapters",
-        CHAPTERS_SCREEN,
+        LimboNavGraph.Chapters.route,
         R.drawable.ic_chapters,
         R.drawable.ic_selected_chapters
     ),
     BottomNavItem(
         "Stats",
-        STATS_SCREEN,
+        LimboNavGraph.Stats.route,
         R.drawable.ic_stats,
         R.drawable.ic_selected_stats
     ),
     BottomNavItem(
         "Profile",
-        PROFILE_SCREEN,
+        LimboNavGraph.Profile.route,
         R.drawable.ic_profile,
         R.drawable.ic_selected_profile
     )
