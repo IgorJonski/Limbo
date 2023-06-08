@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.limboapp.R
 import com.app.limboapp.common.CircleImage
+import com.app.limboapp.common.GradientButton
 import com.app.limboapp.ui.theme.*
 
 @Preview

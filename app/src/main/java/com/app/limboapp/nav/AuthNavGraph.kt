@@ -6,7 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.app.limboapp.screens.LoginScreen
 import com.app.limboapp.screens.RegisterScreen
-import com.app.limboapp.ui.theme.FirstScreen
+import com.app.limboapp.screens.FirstScreen
 
 fun NavGraphBuilder.authNavGraph(navController: NavController) {
     navigation(
