@@ -29,7 +29,10 @@ import com.app.limboapp.R
 
 @Preview
 @Composable
-fun FirstScreen() {
+fun FirstScreen(
+    onLoginClick: () -> Unit = {},
+    onRegisterClick: () -> Unit = {}
+) {
     val height = LocalConfiguration.current.screenHeightDp.dp
     Box(
         modifier = Modifier
@@ -41,7 +44,10 @@ fun FirstScreen() {
             .fillMaxSize()
     ) {
         LimboHeaderWithDesc(screenHeight = height)
-        SignInOrUpButtons()
+        SignInOrUpButtons(
+            onLoginClick = onLoginClick,
+            onRegisterClick = onRegisterClick
+        )
     }
 }
 
@@ -88,7 +94,10 @@ fun LimboHeaderWithDesc(screenHeight: Dp) {
 }
 
 @Composable
-fun SignInOrUpButtons() {
+fun SignInOrUpButtons(
+    onLoginClick: () -> Unit,
+    onRegisterClick: () -> Unit
+) {
 
     Box(modifier = Modifier
         .fillMaxSize(),
@@ -110,7 +119,7 @@ fun SignInOrUpButtons() {
                     )
                 )
             ) {
-
+                onLoginClick()
             }
             
             Spacer(modifier = Modifier.height(10.dp))
@@ -125,9 +134,9 @@ fun SignInOrUpButtons() {
                         ButtonBlack,
                         ButtonBlack
                     )
-                )
+                ),
             ) {
-
+                onRegisterClick()
             }
 
         }
