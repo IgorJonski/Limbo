@@ -1,7 +1,6 @@
 package com.app.limboapp.screens
 
 import android.util.Log
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.limboapp.R
+import com.app.limboapp.common.CustomTextField
 import com.app.limboapp.ui.theme.*
 
 @Preview(showBackground = true)
@@ -54,12 +54,14 @@ fun RegisterScreen(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            LoginRegisterOption(
-                buttonText = "Zarejestruj się",
+            AuthFooter(
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 40.dp),
                 onButtonClick = onRegisterClick,
-                secondOptionFirstText = "Masz już konto? ",
-                secondOptionSecondText = "Zaloguj się",
-                onSecondOptionClick = {}
+                buttonText = "Zaloguj się",
+                staticPromptText = "Nie masz konta?",
+                clickablePromptText = "Zarejestruj się"
             )
         }
     }
@@ -141,57 +143,61 @@ fun RegisterTextFields() {
         )
 
         Spacer(modifier = Modifier.height(10.dp))
-        val name = remember { mutableStateOf("") }
+        var name by remember { mutableStateOf("") }
         CustomTextField(
-            state = name,
+            value = name,
+            onValueChange = { name = it },
             hint = "Imię",
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next,
-            onIconClick = {}
+            onTrailingIconClick = {}
         ) {
-            Log.d("LOG_TAG", "Finished ${name.value}")
+            Log.d("LOG_TAG", "Finished $name")
         }
 
         Spacer(modifier = Modifier.height(10.dp))
-        val surname = remember { mutableStateOf("") }
+        var surname by remember { mutableStateOf("") }
         CustomTextField(
-            state = surname,
+            value = surname,
+            onValueChange = { surname = it },
             hint = "Nazwisko",
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next,
-            onIconClick = {}
+            onTrailingIconClick = {}
         ) {
-            Log.d("LOG_TAG", "Finished ${surname.value}")
+            Log.d("LOG_TAG", "Finished $surname")
         }
 
         Spacer(modifier = Modifier.height(10.dp))
-        val password = remember { mutableStateOf("") }
+        var password by remember { mutableStateOf("") }
         var passwordVisibility by remember { mutableStateOf(false) }
         CustomTextField(
-            state = password,
+            value = password,
+            onValueChange = { password = it },
             hint = "Hasło",
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next,
-            iconId = if (passwordVisibility) {
+            trailingIconId = if (passwordVisibility) {
                 R.drawable.gradient_password_invisible
             } else R.drawable.gradient_password_visible,
-            onIconClick = { passwordVisibility = !passwordVisibility },
+            onTrailingIconClick = { passwordVisibility = !passwordVisibility },
             visualTransformation = if (passwordVisibility) {
                 VisualTransformation.None
             } else PasswordVisualTransformation()
         ) {
-            Log.d("LOG_TAG", "Finished ${password.value}")
+            Log.d("LOG_TAG", "Finished $password")
         }
 
         Spacer(modifier = Modifier.height(10.dp))
-        val repeatPassword = remember { mutableStateOf("") }
+        var repeatPassword by remember { mutableStateOf("") }
         CustomTextField(
-            state = repeatPassword,
+            value = repeatPassword,
+            onValueChange = { repeatPassword = it },
             hint = "Powtórz hasło",
             keyboardType = KeyboardType.Text,
             imeAction = ImeAction.Next
         ) {
-            Log.d("LOG_TAG", "Finished ${repeatPassword.value}")
+            Log.d("LOG_TAG", "Finished $repeatPassword")
         }
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -224,89 +230,43 @@ fun RegisterTextFields() {
         }
         
         Spacer(modifier = Modifier.height(10.dp))
-        val studentID = remember { mutableStateOf("") }
+        var studentID by remember { mutableStateOf("") }
         if (isStudent) {
             CustomTextField(
-                state = studentID,
+                value = studentID,
+                onValueChange = { studentID = it },
                 hint = "Numer albumu",
                 keyboardType = KeyboardType.Text,
                 imeAction = ImeAction.Next,
                 enabled = isStudent
             ) {
-                Log.d("LOG_TAG", "Finished ${studentID.value}")
+                Log.d("LOG_TAG", "Finished $studentID")
             }
         }
     }
 }
 
 @Composable
-fun CustomTextField(
-    state: MutableState<String>,
-    hint: String = "",
-    @DrawableRes iconId: Int? = null,
-    onIconClick: () -> Unit = {},
-    keyboardType: KeyboardType,
-    imeAction: ImeAction,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    enabled: Boolean = true,
-    onKeyboardDone: () -> Unit
-) {
-    TextField(
+fun LimboLogoToFix() {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .clip(RoundedCornerShape(20.dp))
-            .width(300.dp),
-        value = state.value,
-        onValueChange = {
-            state.value = it
-        },
-        shape = RoundedCornerShape(20.dp),
-        placeholder = {
-            Text(
-                text = hint,
-                color = TextWhite,
-                fontFamily = Montserrat,
-                fontWeight = FontWeight.Light,
-                fontSize = 15.sp
-            )
-        },
-        textStyle = TextStyle(
-            color = TextWhite
-        ),
-        trailingIcon = {
-            IconButton(onClick = {
-                onIconClick()
-            }, enabled = iconId != null
-            ) {
-                Image(
-                    painter = painterResource(
-                        id = iconId ?: R.drawable.transparent_icon
-                    ),
-                    contentDescription = hint,
-                    modifier = Modifier
-                        .padding(12.dp)
-                        .size(30.dp)
-                )
-            }
-        },
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(
-            keyboardType = keyboardType,
-            imeAction = imeAction
-        ),
-        keyboardActions = KeyboardActions(
-            onAny = {
-                onKeyboardDone()
-            }
-        ),
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = TextWhite,
-            disabledTextColor = TextWhite,
-            backgroundColor = DarkGray,
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent
-        ),
-        visualTransformation = visualTransformation,
-        enabled = enabled
-    )
+            .fillMaxWidth()
+            .padding(vertical = 16.dp)
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.limbo_flame),
+            contentDescription = "Limbo Logo",
+            modifier = Modifier
+                .size(48.dp)
+        )
+        Text(
+            text = "Limbo",
+            fontSize = 36.sp,
+            fontFamily = Montserrat,
+            fontWeight = FontWeight.SemiBold,
+            color = TextOrange
+        )
+    }
 }
