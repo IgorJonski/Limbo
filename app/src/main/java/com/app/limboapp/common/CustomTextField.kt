@@ -36,6 +36,7 @@ import com.app.limboapp.ui.theme.TextWhite
 
 @Composable
 fun CustomTextField(
+    modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
     hint: String = "",
@@ -48,7 +49,7 @@ fun CustomTextField(
     onKeyboardDone: () -> Unit = {}
 ) {
     TextField(
-        modifier = Modifier
+        modifier = modifier
             .clip(RoundedCornerShape(22.dp))
             .width(300.dp),
         value = value,

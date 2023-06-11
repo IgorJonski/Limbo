@@ -44,7 +44,7 @@ fun LoginScreen(
                 .padding(bottom = 40.dp),
             onButtonClick = onLoginClick,
             buttonText = "Zaloguj się",
-            staticPromptText = "Nie masz konta?",
+            staticPromptText = "Nie masz konta? ",
             clickablePromptText = "Zarejestruj się"
         )
     }
