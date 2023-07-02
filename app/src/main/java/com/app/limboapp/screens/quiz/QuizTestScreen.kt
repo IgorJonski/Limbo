@@ -4,6 +4,7 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -181,6 +182,22 @@ fun QuizAnswerButton(
     }
 }
 
+@Composable
+fun QuizAnswersSection(
+    modifier: Modifier = Modifier,
+    question: Question
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(22.dp)
+    ) {
+        QuizAnswerButton(answerText = question.wrongAnswers[0])
+        QuizAnswerButton(answerText = question.wrongAnswers[1])
+        QuizAnswerButton(answerText = question.correctAnswer)
+        QuizAnswerButton(answerText = question.wrongAnswers[2])
+    }
+}
+
 // --------------------
 
 @Preview
@@ -225,4 +242,16 @@ fun QuizAnswerButtonPreview() {
     QuizAnswerButton(
         answerText = "-5"
     )
+}
+
+@Preview
+@Composable
+fun QuizAnswersSectionPreview() {
+    val testQuestion = Question(
+        text = "Ile będzie równa zmienna licznik po wykonaniu tego kodu?",
+        image = R.drawable.quiz1,
+        wrongAnswers = arrayListOf("5", "0", "3"),
+        correctAnswer = "-5"
+    )
+    QuizAnswersSection(question = testQuestion)
 }
