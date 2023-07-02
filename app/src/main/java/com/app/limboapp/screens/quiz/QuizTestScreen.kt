@@ -3,6 +3,8 @@ package com.app.limboapp.screens.quiz
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -91,6 +93,15 @@ fun QuizQuestionsLeft(
     }
 }
 
+@Composable
+fun QuizProgressSection(modifier: Modifier = Modifier) {
+    Row(modifier = modifier) {
+        QuizTimeLeftBar()
+        Spacer(modifier = Modifier.width(34.dp))
+        QuizQuestionsLeft()
+    }
+}
+
 // --------------------
 
 @Preview
@@ -109,4 +120,10 @@ fun QuizTimeLeftBarPreview() {
 @Composable
 fun QuizQuestionsLeftPreview() {
     QuizQuestionsLeft()
+}
+
+@Preview
+@Composable
+fun QuizProgressSectionPreview() {
+    QuizProgressSection()
 }
