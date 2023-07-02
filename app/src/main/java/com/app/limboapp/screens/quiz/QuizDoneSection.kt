@@ -39,8 +39,18 @@ import com.app.limboapp.ui.theme.TextWhite
 import com.app.limboapp.ui.theme.circleProgressOrangeGradient
 
 @Composable
-fun QuizDoneSection() {
-
+fun QuizDoneSection(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        QuizGainedFlickersCircle()
+        QuizFinishedBottomMessage(
+            title = "Dobrze Ci idzie!",
+            message = "Gratulacje! Zdobywasz kolejny punkt w tym dziale! " +
+                    "Brakuje ci jeszcze x punktów do odblokowania kolejnego etapu."
+        )
+    }
 }
 
 @Composable
@@ -119,14 +129,18 @@ fun CircularGainedFlickersIndicator(
 }
 
 @Composable
-fun QuizGainedFlickersCircle(modifier: Modifier = Modifier) {
+fun QuizGainedFlickersCircle(
+    modifier: Modifier = Modifier,
+    gainedFlickers: Int = 1
+) {
     Box(modifier = modifier.size(220.5.dp)) {
         CircularGainedFlickersIndicator(
             modifier = Modifier.align(Alignment.BottomCenter),
             percentage = 1f,
             radius = 95.dp,
             innerCircleColor = Color.Transparent,
-            strokeWidth = 15.dp
+            strokeWidth = 15.dp,
+            gainedFlickers = gainedFlickers
         )
         Image(
             modifier = Modifier
