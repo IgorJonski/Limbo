@@ -39,11 +39,6 @@ import com.app.limboapp.ui.theme.TextWhite
 import com.app.limboapp.ui.theme.orangeGradient
 
 @Composable
-fun QuizTestScreen() {
-
-}
-
-@Composable
 fun QuizTimeLeftBar(
     modifier: Modifier = Modifier,
     maxTime: Int = 60,
@@ -220,12 +215,6 @@ fun QuizTestSection(
 }
 
 // --------------------
-
-@Preview
-@Composable
-fun QuizTestScreenPreview() {
-    QuizTestScreen()
-}
 
 @Preview
 @Composable
