@@ -16,13 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.limboapp.model.ChapterData
@@ -159,9 +159,9 @@ fun CircularProgressBar(
     modifier: Modifier = Modifier,
     percentage: Float,
     number: Int = 100,
-    fontSize: TextUnit = 28.sp,
     radius: Dp = 35.dp,
     progressGradient: Brush = circleProgressOrangeGradient,
+    innerCircleColor: Color = CircleGray,
     strokeWidth: Dp = 8.dp,
     animDuration: Int = 1000,
     animDelay: Int = 0,
@@ -192,7 +192,7 @@ fun CircularProgressBar(
                 .size(radius * 2f)
         ) {
             drawCircle(
-                color = CircleGray
+                color = innerCircleColor
             )
             drawArc(
                 brush = progressGradient,
