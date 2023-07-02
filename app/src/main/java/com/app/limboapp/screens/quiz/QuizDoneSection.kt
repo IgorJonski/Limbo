@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -39,16 +40,21 @@ import com.app.limboapp.ui.theme.TextWhite
 import com.app.limboapp.ui.theme.circleProgressOrangeGradient
 
 @Composable
-fun QuizDoneSection(modifier: Modifier = Modifier) {
+fun QuizDoneSection(
+    modifier: Modifier = Modifier,
+    title: String,
+    message: String,
+    gainedFlickers: Int = 1
+) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        QuizGainedFlickersCircle()
+        QuizGainedFlickersCircle(gainedFlickers = gainedFlickers)
+        Spacer(modifier = Modifier.height(28.dp))
         QuizFinishedBottomMessage(
-            title = "Dobrze Ci idzie!",
-            message = "Gratulacje! Zdobywasz kolejny punkt w tym dziale! " +
-                    "Brakuje ci jeszcze x punktów do odblokowania kolejnego etapu."
+            title = title,
+            message = message
         )
     }
 }
@@ -79,7 +85,7 @@ fun CircularGainedFlickersIndicator(
     val curGainedPoints = animateIntAsState(
         targetValue = if (animationPlayed) gainedFlickers else 0,
         animationSpec = tween(
-            durationMillis = animDuration,
+            durationMillis = animDuration - 250,
             delayMillis = animDelay
         )
     )
@@ -159,7 +165,7 @@ fun QuizFinishedBottomMessage(
     message: String
 ) {
     Column(
-        modifier = modifier,
+        modifier = modifier.padding(horizontal = 12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -187,7 +193,13 @@ fun QuizFinishedBottomMessage(
 @Preview
 @Composable
 fun QuizDoneSectionPreview() {
-    QuizDoneSection()
+    val title = "Dobrze ci idzie!"
+    val message = "Gratulacje! Zdobywasz kolejny punkt w tym dziale! " +
+            "Brakuje ci jeszcze x punktów do odblokowania kolejnego etapu."
+    QuizDoneSection(
+        title = title,
+        message = message
+    )
 }
 
 @Preview
