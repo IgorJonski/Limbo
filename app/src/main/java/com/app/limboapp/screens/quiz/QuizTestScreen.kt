@@ -14,7 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -126,7 +128,8 @@ fun QuizQuestion(
             fontFamily = Montserrat,
             fontWeight = FontWeight.Medium,
             fontSize = 17.sp,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(horizontal = 8.dp)
         )
         Spacer(modifier = Modifier.height(18.dp))
         if (question.image != null) {
@@ -198,6 +201,24 @@ fun QuizAnswersSection(
     }
 }
 
+@Composable
+fun QuizTestSection(
+    modifier: Modifier = Modifier,
+    question: Question
+) {
+    Column(
+        modifier = modifier
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        QuizProgressSection()
+        Spacer(modifier = Modifier.height(25.dp))
+        QuizQuestion(question = question)
+        Spacer(modifier = Modifier.height(25.dp))
+        QuizAnswersSection(question = question)
+    }
+}
+
 // --------------------
 
 @Preview
@@ -254,4 +275,16 @@ fun QuizAnswersSectionPreview() {
         correctAnswer = "-5"
     )
     QuizAnswersSection(question = testQuestion)
+}
+
+@Preview
+@Composable
+fun QuizTestSectionPreview() {
+    val testQuestion = Question(
+        text = "Ile będzie równa zmienna licznik po wykonaniu tego kodu?",
+        image = R.drawable.quiz1,
+        wrongAnswers = arrayListOf("5", "0", "3"),
+        correctAnswer = "-5"
+    )
+    QuizTestSection(question = testQuestion)
 }
